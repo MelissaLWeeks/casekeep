@@ -18,6 +18,9 @@ const emptyExpense = {
 
 const statusOptions = ["Billed", "Partially Paid", "Paid"];
 
+const FREE_EXPENSE_LIMIT = 5;
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/8x27sK2X3epy6whcwEdjO00";
+
 function createId() {
   return crypto.randomUUID
     ? crypto.randomUUID()
@@ -278,6 +281,14 @@ export default function CasePage() {
     status: "",
   });
 
+  const isCaseUnlocked = false;
+  const hasReachedFreeLimit =
+    !isCaseUnlocked && expenses.length >= FREE_EXPENSE_LIMIT;
+  const remainingFreeExpenses = Math.max(
+    FREE_EXPENSE_LIMIT - expenses.length,
+    0
+  );
+
   useEffect(() => {
     const saved = localStorage.getItem("casekeepExpensesV2");
     const savedSuggestions = localStorage.getItem("casekeepAdjustmentSuggestions");
@@ -350,6 +361,10 @@ export default function CasePage() {
 
   function addExpense(e) {
     e.preventDefault();
+
+    if (hasReachedFreeLimit) {
+      return;
+    }
 
     const newExpense = cleanExpense({
       ...formData,
@@ -788,16 +803,54 @@ return `
       </div>
 
       <div className="border border-gray-300 bg-white p-4 rounded mb-8">
-        <h2 className="text-xl font-semibold mb-3">Add Expense</h2>
-        <ExpenseForm
+  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
+    <div>
+      <h2 className="text-xl font-semibold">Add Expense</h2>
+      <p className="text-sm text-gray-600">
+        {isCaseUnlocked
+          ? "This case is unlocked."
+          : `${remainingFreeExpenses} of ${FREE_EXPENSE_LIMIT} free expenses remaining.`}
+      </p>
+    </div>
+
+    {!isCaseUnlocked && (
+      <div className="border border-blue-200 bg-blue-50 text-blue-900 rounded p-3 text-sm md:max-w-sm">
+        Try your first {FREE_EXPENSE_LIMIT} expenses free. Unlock the full
+        case for $49 when you are ready to continue.
+      </div>
+    )}
+  </div>
+
+  {hasReachedFreeLimit ? (
+    <div className="border border-gray-300 bg-gray-50 rounded p-5">
+      <h3 className="text-lg font-semibold mb-2">
+        You’ve used your 5 free expenses.
+      </h3>
+      <p className="text-gray-700 mb-4">
+        Unlock this case for $49 to continue adding expenses, editing your
+        records, and exporting reports.
+      </p>
+
+      <a
+        href={STRIPE_PAYMENT_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block bg-blue-700 text-white px-5 py-3 rounded font-semibold"
+      >
+        Unlock full case for $49
+      </a>
+    </div>
+  ) : (
+    <ExpenseForm
           data={formData}
           setData={setFormData}
           onChange={handleAddChange}
           onSubmit={addExpense}
           submitLabel="Add Expense"
-          adjustmentSuggestions={adjustmentSuggestions}
-        />
-      </div>
+    adjustmentSuggestions={adjustmentSuggestions}
+  />
+  )}
+</div>
 
      <div className="border border-gray-300 bg-gray-50 p-4 rounded mb-4">
   <h2 className="text-xl font-semibold mb-3">Filter</h2>
