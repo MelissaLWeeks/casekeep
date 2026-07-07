@@ -12,12 +12,21 @@ export default function Home() {
             </p>
           </div>
 
-          <Link
-            href="/case"
-            className="bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-center"
-          >
-            Try 5 expenses free
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link
+              href="/login"
+              className="border border-gray-300 bg-white text-gray-900 px-4 py-2 rounded-lg font-semibold text-center"
+            >
+              Log in
+            </Link>
+
+            <Link
+              href="/signup"
+              className="bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-center"
+            >
+              Try 5 expenses free
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -42,7 +51,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/case"
+                  href="/signup"
                   className="bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold text-center"
                 >
                   Try 5 expenses free
@@ -77,7 +86,7 @@ export default function Home() {
               </div>
 
               <Link
-                href="/case"
+                href="/signup"
                 className="mt-6 block w-full bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold text-center"
               >
                 Open CaseKeep
@@ -165,7 +174,7 @@ export default function Home() {
               </p>
 
               <Link
-                href="/case"
+                href="/signup"
                 className="block bg-white text-gray-900 px-6 py-3 rounded-xl font-semibold text-center"
               >
                 Try 5 expenses free
