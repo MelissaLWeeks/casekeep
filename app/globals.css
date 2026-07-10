@@ -1,26 +1,200 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --casekeep-navy: #2b2d42;
+  --casekeep-cream: #f5f1ea;
+  --casekeep-brick: #b5443b;
+  --casekeep-gray: #7d7c84;
+  --casekeep-white: #ffffff;
+  --casekeep-border: #ded8cf;
+
+  --background: var(--casekeep-cream);
+  --foreground: var(--casekeep-navy);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-casekeep-navy: var(--casekeep-navy);
+  --color-casekeep-cream: var(--casekeep-cream);
+  --color-casekeep-brick: var(--casekeep-brick);
+  --color-casekeep-gray: var(--casekeep-gray);
+  --color-casekeep-white: var(--casekeep-white);
+  --color-casekeep-border: var(--casekeep-border);
+
+  --font-sans: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--casekeep-cream);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  min-height: 100vh;
+  margin: 0;
+  background: var(--casekeep-cream);
+  color: var(--casekeep-navy);
   font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(181, 68, 59, 0.2);
+  color: var(--casekeep-navy);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(181, 68, 59, 0.35);
+  outline-offset: 2px;
+}
+
+/* Reusable CaseKeep styles */
+
+.casekeep-page {
+  min-height: 100vh;
+  background: var(--casekeep-cream);
+  color: var(--casekeep-navy);
+}
+
+.casekeep-container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.casekeep-card {
+  background: var(--casekeep-white);
+  border: 1px solid var(--casekeep-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(43, 45, 66, 0.08);
+}
+
+.casekeep-button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--casekeep-brick);
+  border-radius: 10px;
+  background: var(--casekeep-brick);
+  color: var(--casekeep-cream);
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.casekeep-button-primary:hover {
+  background: #9f3932;
+  box-shadow: 0 6px 16px rgba(181, 68, 59, 0.22);
+  transform: translateY(-1px);
+}
+
+.casekeep-button-primary:active {
+  transform: translateY(0);
+}
+
+.casekeep-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--casekeep-navy);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--casekeep-navy);
+  font-weight: 700;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.casekeep-button-secondary:hover {
+  background: var(--casekeep-navy);
+  color: var(--casekeep-cream);
+}
+
+.casekeep-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--casekeep-border);
+  border-radius: 10px;
+  background: var(--casekeep-white);
+  color: var(--casekeep-navy);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.casekeep-input::placeholder {
+  color: var(--casekeep-gray);
+}
+
+.casekeep-input:focus {
+  border-color: var(--casekeep-brick);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(181, 68, 59, 0.14);
+}
+
+.casekeep-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--casekeep-navy);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.casekeep-muted {
+  color: var(--casekeep-gray);
+}
+
+.casekeep-heading {
+  margin: 0;
+  color: var(--casekeep-navy);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.casekeep-divider {
+  border: 0;
+  border-top: 1px solid var(--casekeep-border);
 }

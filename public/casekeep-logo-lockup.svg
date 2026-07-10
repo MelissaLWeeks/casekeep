@@ -1,0 +1,29 @@
+<svg width="480" height="140" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background (transparent by default; uncomment rect below for cream card version) -->
+  <!-- <rect width="480" height="140" fill="#F5F1EA"/> -->
+
+  <!-- Shield mark: protection + organization -->
+  <path d="M20,25 L60,10 L100,25 L100,75 Q100,112 60,132 Q20,112 20,75 Z"
+        fill="#2B2D42" stroke="#B5443B" stroke-width="3"/>
+
+  <!-- Document inside shield -->
+  <rect x="35" y="34" width="50" height="62" rx="6" fill="#F5F1EA"/>
+  <rect x="43" y="46" width="34" height="5" rx="2.5" fill="#7D7C84"/>
+  <rect x="43" y="58" width="34" height="5" rx="2.5" fill="#7D7C84"/>
+  <rect x="43" y="70" width="22" height="5" rx="2.5" fill="#7D7C84"/>
+
+  <!-- Checkmark badge: "resolved / organized" -->
+  <circle cx="94" cy="100" r="19" fill="#B5443B" stroke="#F5F1EA" stroke-width="3"/>
+  <path d="M85,100 L91,107 L104,92" fill="none" stroke="#F5F1EA" stroke-width="4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Wordmark -->
+  <text x="140" y="88" font-family="Georgia, 'Fraunces', 'Times New Roman', serif"
+        font-size="52" font-weight="700" letter-spacing="-0.5">
+    <tspan fill="#2B2D42">Case</tspan><tspan fill="#B5443B">Keep</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="142" y="112" font-family="Arial, 'Inter', sans-serif" font-size="14"
+        letter-spacing="2" fill="#7D7C84">ORGANIZED. READY. RESOLVED.</text>
+</svg>
